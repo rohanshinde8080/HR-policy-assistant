@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Employee dashboard for AI-powered HR Policy Assistant."
+    >
+
+    <title>
+        Employee Dashboard | HR Policy Assistant
+    </title>
+
+
+    <!-- =====================================================
+         EMPLOYEE CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/employee.css"
+    >
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body class="employee-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="employee-sidebar">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="employee.html"
+            class="sidebar-logo"
+        >
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+
+            <div>
+
+                <span>
+                    HR
+                </span>
+
+                Policy
+
+                <small>
+                    Assistant
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="employee.html"
+                class="sidebar-link active"
+            >
+
+                <span class="sidebar-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="#chat"
+                class="sidebar-link"
+            >
+
+                <span class="sidebar-icon">
+                    ✦
+                </span>
+
+                AI Assistant
+
+            </a>
+
+
+            <a
+                href="#history"
+                class="sidebar-link"
+            >
+
+                <span class="sidebar-icon">
+                    ◷
+                </span>
+
+                Chat History
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-help">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                    <span>
+                        Ask the AI Assistant
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                id="logoutBtn"
+            >
+
+                <span>
+                    ↪
+                </span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="employee-main">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="employee-topbar">
+
+            <div>
+
+                <p class="page-label">
+                    EMPLOYEE PORTAL
+                </p>
+
+                <h1>
+                    HR Policy Assistant
+                </h1>
+
+            </div>
+
+
+            <!-- LOGGED-IN EMPLOYEE -->
+
+            <div class="employee-user">
+
+                <div
+                    class="user-avatar"
+                    id="employeeAvatar"
+                >
+                    E
+                </div>
+
+
+                <div class="user-details">
+
+                    <strong id="employeeName">
+                        Employee
+                    </strong>
+
+                    <span id="employeeRole">
+                        Employee Account
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             WELCOME
+        ================================================== -->
+
+        <section class="employee-welcome">
+
+            <div>
+
+                <div class="welcome-badge">
+
+                    <span></span>
+
+                    AI Assistant Online
+
+                </div>
+
+
+                <h2>
+                    How can I help you today?
+                </h2>
+
+
+                <p>
+                    Ask questions about your company's HR
+                    policies and get quick, policy-based answers.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CHAT AREA
+        ================================================== -->
+
+        <section
+            class="employee-chat-section"
+            id="chat"
+        >
+
+
+            <!-- CHAT CARD -->
+
+            <div class="chat-main-card">
+
+
+                <!-- CHAT HEADER -->
+
+                <div class="employee-chat-header">
+
+                    <div class="assistant-profile">
+
+                        <div class="assistant-avatar">
+                            AI
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                HR Policy Assistant
+                            </h3>
+
+
+                            <p>
+
+                                <span></span>
+
+                                Online · Policy Based
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAT MESSAGES -->
+
+                <div
+                    class="employee-chat-messages"
+                    id="chatMessages"
+                >
+
+                    <!-- DEFAULT MESSAGE -->
+
+                    <div class="assistant-message">
+
+                        <div class="message-avatar">
+                            AI
+                        </div>
+
+
+                        <div class="message-content">
+
+                            <span class="message-name">
+                                HR Assistant
+                            </span>
+
+
+                            <p>
+                                Hello! I'm your AI HR Policy
+                                Assistant. Ask me anything about
+                                your company's HR policies.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SUGGESTED QUESTIONS
+                ================================================== -->
+
+                <div class="question-suggestions">
+
+                    <p>
+                        Suggested questions
+                    </p>
+
+
+                    <div class="suggestion-buttons">
+
+
+                        <button
+                            type="button"
+                            class="suggestion-btn"
+                        >
+                            How many casual leaves do I get?
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="suggestion-btn"
+                        >
+                            What is the leave policy?
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="suggestion-btn"
+                        >
+                            What is the work from home policy?
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="suggestion-btn"
+                        >
+                            What are the working hours?
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CHAT INPUT
+                ================================================== -->
+
+                <form
+                    class="employee-chat-input"
+                    id="chatForm"
+                >
+
+                    <input
+                        type="text"
+                        id="questionInput"
+                        placeholder="Ask your HR policy question..."
+                        autocomplete="off"
+                        required
+                    >
+
+
+                    <button
+                        type="submit"
+                        id="sendQuestion"
+                        aria-label="Send question"
+                    >
+                        →
+                    </button>
+
+                </form>
+
+
+                <p class="chat-disclaimer">
+
+                    AI responses are generated from available
+                    company HR policy information.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RIGHT INFORMATION CARD
+            ================================================== -->
+
+            <aside class="employee-info-card">
+
+
+                <!-- POLICY STATUS -->
+
+                <div class="info-card-header">
+
+                    <div class="info-card-icon">
+                        ✓
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Policy Verified
+                        </h3>
+
+                        <p>
+                            Answers are policy-based
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-divider"></div>
+
+
+
+                <!-- QUICK ACCESS -->
+
+                <div class="quick-section">
+
+                    <h4>
+                        Quick Access
+                    </h4>
+
+
+                    <a href="#chat">
+
+                        <span>
+                            ✦
+                        </span>
+
+                        Ask HR Assistant
+
+                    </a>
+
+
+                    <a href="#history">
+
+                        <span>
+                            ◷
+                        </span>
+
+                        View Chat History
+
+                    </a>
+
+                </div>
+
+
+                <div class="info-divider"></div>
+
+
+
+                <!-- SECURITY -->
+
+                <div class="security-note">
+
+                    <span>
+                        🔒
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            Secure & Private
+                        </strong>
+
+
+                        <p>
+                            Your account activity is protected.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CHAT HISTORY
+        ================================================== -->
+
+        <section
+            class="history-section"
+            id="history"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="page-label">
+                        RECENT ACTIVITY
+                    </p>
+
+
+                    <h2>
+                        Chat History
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="history-card"
+                id="chatHistory"
+            >
+
+                <div class="empty-history">
+
+                    <div class="empty-icon">
+                        ◷
+                    </div>
+
+
+                    <h3>
+                        No recent conversations
+                    </h3>
+
+
+                    <p>
+                        Your HR questions and answers will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         EMPLOYEE JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/config.js"></script>
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Employee Registration - HR Policy Assistant"
+    >
+
+    <title>Register | HR Policy Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="css/register.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="register-container">
+
+        <div class="register-card">
+
+            <div class="logo">
+                <div class="logo-icon">AI</div>
+
+                <div>
+                    <strong>HR Policy</strong>
+                    <span>Assistant</span>
+                </div>
+            </div>
+
+
+            <div class="register-header">
+
+                <p class="label">
+                    EMPLOYEE REGISTRATION
+                </p>
+
+                <h1>
+                    Create your account
+                </h1>
+
+                <p>
+                    Register to access the HR Policy Assistant.
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="registerMessage"
+                    class="register-message">
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    id="registerButton"
+                >
+                    Create Account
+                    <span>→</span>
+                </button>
+
+            </form>
+
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>

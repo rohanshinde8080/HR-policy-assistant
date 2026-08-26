@@ -1,0 +1,32 @@
+# Environment Variables & Secrets
+.env
+*.env
+!.env.example
+
+# Python Virtual Environments
+env/
+venv/
+.venv/
+ENV/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Uploads & Vector Database (keep default files, ignore temp/new large files if needed)
+# backend/uploads/*.pdf
+# backend/faiss_db/*.index
+# backend/faiss_db/*.json
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store

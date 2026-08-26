@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Admin Dashboard for HR Policy Assistant"
+    >
+
+    <title>
+        Admin Dashboard | HR Policy Assistant
+    </title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+
+    <link
+        rel="stylesheet"
+        href="css/admin.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body class="admin-page">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="admin-sidebar">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="admin.html"
+            class="admin-logo"
+        >
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+
+            <div class="logo-text">
+
+                <strong>
+                    HR Policy
+                </strong>
+
+                <span>
+                    Assistant
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="admin-nav">
+
+
+            <a
+                href="admin.html"
+                class="admin-nav-link active"
+            >
+
+                <span>
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+
+            <a
+                href="#policy"
+                class="admin-nav-link"
+            >
+
+                <span>
+                    ◈
+                </span>
+
+                Policy Management
+
+            </a>
+
+
+
+            <a
+                href="#quickTester"
+                class="admin-nav-link"
+            >
+
+                <span>
+                    💬
+                </span>
+
+                Quick AI Tester
+
+            </a>
+
+
+
+            <a
+                href="#system"
+                class="admin-nav-link"
+            >
+
+                <span>
+                    ⚙
+                </span>
+
+                System Status
+
+            </a>
+
+        </nav>
+
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="admin-sidebar-bottom">
+
+
+            <div class="admin-support">
+
+                <div class="support-icon">
+                    ?
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Admin Panel
+                    </strong>
+
+                    <span>
+                        Manage HR policies
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <button
+                type="button"
+                id="adminLogoutBtn"
+                class="admin-logout"
+            >
+
+                <span>
+                    ↪
+                </span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="admin-topbar">
+
+            <!-- LEFT: BRAND / PORTAL BADGE -->
+            <div class="topbar-left">
+                <div class="portal-tag-pill">
+                    <span class="portal-dot"></span>
+                    <span>HR AI Portal</span>
+                </div>
+                <span class="portal-sub-text">Control Center</span>
+            </div>
+
+            <!-- CENTER: GOOD AFTERNOON GREETING & ADMIN TITLE -->
+            <div class="topbar-center">
+                <div class="greeting-badge">
+                    <span class="greeting-dot">✨</span>
+                    <span id="timeGreeting">Welcome back</span>
+                    <span class="date-sep">•</span>
+                    <span id="liveDate">Today</span>
+                </div>
+
+                <h1 id="heroAdminTitle">
+                    Good afternoon, Sai!
+                </h1>
+
+                <p class="admin-topbar-sub">
+                    Live document vectorization and AI policy assistant management.
+                </p>
+            </div>
+
+            <!-- RIGHT: LOGGED-IN ADMIN PROFILE -->
+            <div class="admin-user">
+                <div class="admin-avatar" id="adminAvatar">
+                    A
+                </div>
+                <div>
+                    <strong id="adminName">
+                        Admin
+                    </strong>
+                    <span id="adminRole">
+                        Administrator
+                    </span>
+                </div>
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             LIVE METRICS STRIP (4 INTERACTIVE STATS)
+        ================================================== -->
+        <section class="admin-metrics-strip">
+            <div class="metric-card">
+                <div class="metric-icon blue">📄</div>
+                <div class="metric-content">
+                    <span class="metric-label">CURRENT POLICY</span>
+                    <strong class="metric-value" id="currentPolicyStatName">Loading...</strong>
+                    <span class="metric-sub">Active Document Source</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon purple">🧩</div>
+                <div class="metric-content">
+                    <span class="metric-label">VECTOR DATABASE</span>
+                    <strong class="metric-value" id="currentPolicyStatChunks">FAISS Ready</strong>
+                    <span class="metric-sub">Semantic Embeddings</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon indigo">🤖</div>
+                <div class="metric-content">
+                    <span class="metric-label">AI REASONING</span>
+                    <strong class="metric-value">Gemini 3.6</strong>
+                    <span class="metric-sub">Grounded Policy Answers</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon green">⚡</div>
+                <div class="metric-content">
+                    <span class="metric-label">SYSTEM HEALTH</span>
+                    <strong class="metric-value" id="policyStatus">Operational</strong>
+                    <span class="metric-sub">FastAPI & MySQL Live</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================
+             2-COLUMN MAIN WORKSPACE (UPLOAD + TESTER)
+        ================================================== -->
+        <div class="admin-workspace-grid">
+
+            <!-- LEFT COLUMN: POLICY MANAGEMENT -->
+            <div class="workspace-col" id="policy">
+
+                <!-- ACTIVE POLICY MINI CARD -->
+                <div class="active-policy-mini-card">
+                    <div class="mini-policy-left">
+                        <div class="pdf-badge-mini">PDF</div>
+                        <div>
+                            <div class="active-tag-mini">
+                                <span class="pulse-dot"></span> CURRENT ACTIVE POLICY
+                            </div>
+                            <h3 id="currentPolicyName">Loading active policy...</h3>
+                            <div class="mini-meta">
+                                <span>📁 <strong id="currentPolicySize">-</strong></span>
+                                <span>🧩 <strong id="currentPolicyChunks">-</strong></span>
+                                <span>📅 <strong id="currentPolicyDate">-</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <a
+                        id="viewPolicyBtn"
+                        href="#"
+                        target="_blank"
+                        class="view-pdf-mini-btn"
+                    >
+                        👁️ View PDF
+                    </a>
+                </div>
+
+                <!-- UPLOAD CARD -->
+                <div class="upload-mini-card">
+                    <div class="card-header-mini">
+                        <h4>Update Knowledge Base</h4>
+                        <span class="card-hint">Upload new PDF to re-index</span>
+                    </div>
+
+                    <!-- DRAG & DROP ZONE -->
+                    <div class="drop-zone-mini" id="dropZone">
+                        <div class="drop-icon-mini">☁️</div>
+                        <p class="drop-text-mini">Drag & drop PDF here, or <span class="browse-link">browse files</span></p>
+                        <span class="drop-sub-mini">PDF is automatically chunked & vectorized into FAISS</span>
+                        <input
+                            type="file"
+                            id="policyFile"
+                            accept=".pdf,application/pdf"
+                            hidden
+                        >
+                    </div>
+
+                    <!-- SELECTED FILE -->
+                    <div id="selectedFile" class="selected-file-mini">
+                        No file selected
+                    </div>
+
+                    <!-- UPLOAD BUTTON -->
+                    <button
+                        type="button"
+                        id="uploadPolicyBtn"
+                        class="upload-mini-btn"
+                    >
+                        Upload & Re-Index Knowledge Base <span>→</span>
+                    </button>
+
+                    <div id="uploadMessage" class="upload-message-mini"></div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: QUICK AI TESTER / CHAT SIMULATOR -->
+            <div class="workspace-col" id="quickTester">
+
+                <div class="tester-mini-card chat-simulator-card">
+                    <div class="card-header-mini">
+                        <div class="card-title-group">
+                            <span class="chat-header-icon">💬</span>
+                            <div>
+                                <h4>Quick AI Policy Query Tester</h4>
+                                <span class="card-hint">Test policy questions in real-time</span>
+                            </div>
+                        </div>
+                        <button type="button" id="clearChatBtn" class="clear-chat-btn" title="Clear chat history">
+                            🗑️ Clear
+                        </button>
+                    </div>
+
+                    <!-- CHAT CONVERSATION STREAM -->
+                    <div class="chat-stream-box" id="chatStream">
+                        <!-- INITIAL BOT GREETING -->
+                        <div class="chat-msg bot-msg">
+                            <div class="msg-avatar bot-avatar">🤖</div>
+                            <div class="msg-body">
+                                <p>Hello! I am ready to answer questions based on the currently active policy document: <strong id="chatActiveDocName">HR_Policy_10_Pages.pdf</strong>. What would you like to know?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRESETS ROW -->
+                    <div class="tester-presets-mini">
+                        <span class="presets-label">Presets:</span>
+                        <button type="button" class="preset-btn preset-btn-mini" data-q="What is the standard working time?">Working Hours</button>
+                        <button type="button" class="preset-btn preset-btn-mini" data-q="How many casual leaves do I get?">Casual Leaves</button>
+                        <button type="button" class="preset-btn preset-btn-mini" data-q="What is the work from home policy?">Work From Home</button>
+                        <button type="button" class="preset-btn preset-btn-mini" data-q="What is the resignation notice period?">Notice Period</button>
+                    </div>
+
+                    <!-- INPUT ROW -->
+                    <div class="tester-input-group">
+                        <input
+                            type="text"
+                            id="adminTestInput"
+                            placeholder="Ask any policy question (e.g. leaves, WFH, hours)..."
+                            class="tester-input-mini"
+                        >
+                        <button type="button" id="adminTestBtn" class="tester-btn-mini">
+                            Test Query <span>▷</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         ADMIN JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/config.js"></script>
+    <script src="js/admin.js"></script>
+
+
+</body>
+
+</html>
