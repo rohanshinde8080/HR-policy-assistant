@@ -2,13 +2,16 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 
 
-# =========================================================
-# EMBEDDING MODEL
-# =========================================================
+_model = None
 
-model = SentenceTransformer(
-    "all-MiniLM-L6-v2"
-)
+
+def get_model():
+    """Lazy load the embedding model only when needed to save RAM on startup."""
+    global _model
+    if _model is None:
+        from sentence_transformers import SentenceTransformer
+        _model = SentenceTransformer("all-MiniLM-L6-v2")
+    return _model
 
 
 # =========================================================
@@ -25,6 +28,7 @@ def generate_embeddings(chunks):
 
 
     # Generate embeddings
+    model = get_model()
     embeddings = model.encode(
         chunks,
         convert_to_numpy=True,
