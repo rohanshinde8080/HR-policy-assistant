@@ -43,7 +43,11 @@ if not DATABASE_URL.startswith("sqlite"):
 
     # TiDB Cloud & Cloud MySQL require TLS/SSL encryption
     if "tidbcloud.com" in DATABASE_URL or "aivencloud.com" in DATABASE_URL or "ssl" in DATABASE_URL.lower():
-        engine_kwargs["connect_args"] = {"ssl": {}}
+        try:
+            import certifi
+            engine_kwargs["connect_args"] = {"ssl": {"ca": certifi.where()}}
+        except Exception:
+            engine_kwargs["connect_args"] = {"ssl": {}}
 
 engine = create_engine(
     DATABASE_URL,

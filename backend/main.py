@@ -82,7 +82,11 @@ app.add_middleware(
 # DATABASE
 # =========================================================
 
-Base.metadata.create_all(bind=engine)
+try:
+    Base.metadata.create_all(bind=engine)
+    print("Database tables created / verified successfully ✅")
+except Exception as e:
+    print("Database table creation error on startup:", e)
 
 
 def init_default_admin():
@@ -105,7 +109,10 @@ def init_default_admin():
     finally:
         db.close()
 
-init_default_admin()
+try:
+    init_default_admin()
+except Exception as e:
+    print("Could not run default admin init:", e)
 
 BACKEND_DIR = os.path.dirname(os.path.abspath(__file__))
 HERO_IMAGE_PATH = os.path.abspath(
