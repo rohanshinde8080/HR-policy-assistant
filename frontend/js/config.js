@@ -8,7 +8,7 @@
     // Replace this with your deployed backend URL (e.g., on Render or Railway)
     // Example: "https://hr-policy-assistant-api.onrender.com"
     // ---------------------------------------------------------
-    const PRODUCTION_BACKEND_URL = "https://your-backend-api.onrender.com";
+    const PRODUCTION_BACKEND_URL = "https://hr-policy-assistant-486o.onrender.com";
 
     // ---------------------------------------------------------
     // 2. DETECT LOCAL DEVELOPMENT ENVIRONMENT
