@@ -1017,6 +1017,92 @@ function setupQuickTester() {
 
 
 // =========================================================
+// SETUP ADMIN CREATION (SECURE IN-APP MANAGEMENT)
+// =========================================================
+
+function setupAdminCreation() {
+    const form = document.getElementById("createAdminForm");
+    const nameInput = document.getElementById("newAdminName");
+    const emailInput = document.getElementById("newAdminEmail");
+    const passwordInput = document.getElementById("newAdminPassword");
+    const submitBtn = document.getElementById("createAdminSubmitBtn");
+    const messageDiv = document.getElementById("createAdminMessage");
+
+    if (!form) return;
+
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const currentAdmin = getLoggedInUser();
+        if (!currentAdmin || !currentAdmin.email) {
+            alert("Session expired. Please log in as Admin again.");
+            window.location.replace("login.html");
+            return;
+        }
+
+        const name = nameInput ? nameInput.value.trim() : "";
+        const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
+        const password = passwordInput ? passwordInput.value : "";
+
+        if (!name || !email || !password) {
+            showMessage(messageDiv, "All fields are required.", "error");
+            return;
+        }
+
+        if (password.length < 6) {
+            showMessage(messageDiv, "Password must be at least 6 characters.", "error");
+            return;
+        }
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Creating Admin... ⏳";
+        }
+        if (messageDiv) messageDiv.textContent = "";
+
+        try {
+            const res = await fetch(`${API_BASE_URL}/create-admin`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    requester_email: currentAdmin.email,
+                    name: name,
+                    email: email,
+                    password: password
+                })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                showMessage(messageDiv, `Admin "${data.name}" created successfully! ✅`, "success");
+                form.reset();
+            } else {
+                showMessage(messageDiv, data.detail || data.message || "Failed to create admin.", "error");
+            }
+        } catch (err) {
+            console.error("Admin creation error:", err);
+            showMessage(messageDiv, "Unable to connect to server.", "error");
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Create Admin Account <span>+</span>";
+            }
+        }
+    });
+
+    function showMessage(el, text, type) {
+        if (!el) return;
+        el.textContent = text;
+        el.style.color = type === "success" ? "#16a34a" : "#dc2626";
+        el.style.fontWeight = "600";
+        el.style.marginTop = "8px";
+        el.style.fontSize = "0.85rem";
+    }
+}
+
+
+// =========================================================
 // ADMIN PAGE INITIALIZATION
 // =========================================================
 
@@ -1027,5 +1113,6 @@ document.addEventListener(
         loadCurrentPolicy();
         setupDragAndDrop();
         setupQuickTester();
+        setupAdminCreation();
     }
 );

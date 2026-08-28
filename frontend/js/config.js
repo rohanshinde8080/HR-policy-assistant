@@ -11,26 +11,10 @@
     const PRODUCTION_BACKEND_URL = "https://hr-policy-assistant-486o.onrender.com";
 
     // ---------------------------------------------------------
-    // 2. DETECT LOCAL DEVELOPMENT ENVIRONMENT
+    // 2. SET GLOBAL API BASE URL
+    // Connect to the Live Render Backend
     // ---------------------------------------------------------
-    const isLocalhost = Boolean(
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1" ||
-        window.location.protocol === "file:" ||
-        window.location.hostname === ""
-    );
-
-    // ---------------------------------------------------------
-    // 3. SET GLOBAL API BASE URL
-    // ---------------------------------------------------------
-    if (isLocalhost) {
-        window.API_BASE_URL = "http://127.0.0.1:8000";
-    } else {
-        // If PRODUCTION_BACKEND_URL is set, use it; otherwise fallback to current origin
-        window.API_BASE_URL = (PRODUCTION_BACKEND_URL && !PRODUCTION_BACKEND_URL.includes("your-backend-api"))
-            ? PRODUCTION_BACKEND_URL.replace(/\/+$/, "")
-            : window.location.origin.replace(/\/+$/, "");
-    }
+    window.API_BASE_URL = PRODUCTION_BACKEND_URL.replace(/\/+$/, "");
 
     console.log("🚀 Connected API Base URL:", window.API_BASE_URL);
 })();

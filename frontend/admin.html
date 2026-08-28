@@ -369,6 +369,52 @@
                     <div id="uploadMessage" class="upload-message-mini"></div>
                 </div>
 
+                <!-- =============================================
+                     ADD NEW ADMIN CARD (SECURE ADMIN MANAGEMENT)
+                ============================================== -->
+                <div class="upload-mini-card" style="margin-top: 1.25rem;">
+                    <div class="card-header-mini">
+                        <h4>👥 Add New Admin</h4>
+                        <span class="card-hint">Create authorized administrator accounts</span>
+                    </div>
+
+                    <form id="createAdminForm" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                        <input
+                            type="text"
+                            id="newAdminName"
+                            placeholder="Full Name (e.g. Rohan Shinde)"
+                            required
+                            class="tester-input-mini"
+                            style="width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 14px; font-size: 0.875rem;"
+                        >
+                        <input
+                            type="email"
+                            id="newAdminEmail"
+                            placeholder="Admin Email (e.g. rohan@company.com)"
+                            required
+                            class="tester-input-mini"
+                            style="width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 14px; font-size: 0.875rem;"
+                        >
+                        <input
+                            type="password"
+                            id="newAdminPassword"
+                            placeholder="Password (minimum 6 characters)"
+                            required
+                            class="tester-input-mini"
+                            style="width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 14px; font-size: 0.875rem;"
+                        >
+                        <button
+                            type="submit"
+                            id="createAdminSubmitBtn"
+                            class="upload-mini-btn"
+                            style="margin-top: 4px; background: linear-gradient(135deg, #4f46e5, #4338ca);"
+                        >
+                            Create Admin Account <span>+</span>
+                        </button>
+                        <div id="createAdminMessage" class="upload-message-mini"></div>
+                    </form>
+                </div>
+
             </div>
 
             <!-- RIGHT COLUMN: QUICK AI TESTER / CHAT SIMULATOR -->

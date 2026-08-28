@@ -157,6 +157,7 @@ class AskRequest(BaseModel):
 
 
 class AdminCreateRequest(BaseModel):
+    requester_email: EmailStr
     name: str
     email: EmailStr
     password: str
@@ -389,6 +390,18 @@ def create_admin(
     db = SessionLocal()
 
     try:
+
+        # -----------------------------------------------------
+        # AUTHENTICATION & AUTHORIZATION CHECK
+        # -----------------------------------------------------
+        requester_email = str(admin_data.requester_email).strip().lower()
+        requester = db.query(User).filter(User.email == requester_email).first()
+
+        if not requester or str(requester.role).strip().lower() != "admin":
+            raise HTTPException(
+                status_code=403,
+                detail="Unauthorized: Only an existing logged-in Admin can create a new Admin account."
+            )
 
         name = admin_data.name.strip()
         email = str(
