@@ -1010,6 +1010,11 @@ def faiss_test():
 
 
     # Search
+    if hasattr(index, "d") and index.d != len(query_embedding):
+        embeddings = generate_embeddings(chunks)
+        index = create_faiss_index(embeddings)
+        save_faiss_index(index)
+        save_chunks(chunks)
 
     results = search_faiss(
         index,
@@ -1136,6 +1141,11 @@ def saved_search():
 
 
         # Search
+        if hasattr(index, "d") and index.d != len(query_embedding):
+            embeddings = generate_embeddings(chunks)
+            index = create_faiss_index(embeddings)
+            save_faiss_index(index)
+            save_chunks(chunks)
 
         results = search_faiss(
             index,
@@ -1330,6 +1340,13 @@ def ask_hr_policy(
     # =====================================================
 
     try:
+
+        if hasattr(index, "d") and index.d != len(query_embedding):
+            print(f"Dimension mismatch detected (Index: {index.d}, Query: {len(query_embedding)}). Auto-rebuilding index with Gemini embeddings...")
+            embeddings = generate_embeddings(chunks)
+            index = create_faiss_index(embeddings)
+            save_faiss_index(index)
+            save_chunks(chunks)
 
         results = search_faiss(
             index,

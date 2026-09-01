@@ -1,22 +1,18 @@
-import gc
 import numpy as np
+from services.gemini_service import get_client
 
-_model = None
+# =========================================================
+# EMBEDDING MODELS TO TRY
+# =========================================================
 
-
-def get_model():
-    """Lazy load the embedding model only when needed to save RAM on startup."""
-    global _model
-    if _model is None:
-        import torch
-        torch.set_num_threads(2)
-        from sentence_transformers import SentenceTransformer
-        _model = SentenceTransformer("all-MiniLM-L6-v2")
-    return _model
+EMBEDDING_MODELS = [
+    "text-embedding-004",
+    "embedding-001"
+]
 
 
 # =========================================================
-# GENERATE EMBEDDINGS
+# GENERATE EMBEDDINGS VIA GEMINI API
 # =========================================================
 
 def generate_embeddings(chunks):
@@ -26,23 +22,45 @@ def generate_embeddings(chunks):
             "No text provided for embedding generation."
         )
 
-    import torch
-    model = get_model()
+    if isinstance(chunks, str):
+        chunks = [chunks]
 
-    with torch.inference_mode():
-        embeddings = model.encode(
-            chunks,
-            batch_size=8,
-            convert_to_numpy=True,
-            show_progress_bar=False
-        )
+    client = get_client()
+    all_embeddings = []
 
-    # FAISS expects float32
-    embeddings = np.asarray(
-        embeddings,
-        dtype=np.float32
-    )
+    # Process in batches
+    batch_size = 16
+    for i in range(0, len(chunks), batch_size):
+        batch = chunks[i:i + batch_size]
+        last_error = None
+        batch_success = False
 
-    gc.collect()
+        for model_name in EMBEDDING_MODELS:
+            try:
+                # Handle single text vs list of texts
+                contents = batch if len(batch) > 1 else batch[0]
+                response = client.models.embed_content(
+                    model=model_name,
+                    contents=contents
+                )
 
-    return embeddings
+                if hasattr(response, "embeddings") and response.embeddings:
+                    for emb in response.embeddings:
+                        all_embeddings.append(emb.values)
+                    batch_success = True
+                    break
+                elif hasattr(response, "embedding") and response.embedding:
+                    all_embeddings.append(response.embedding.values)
+                    batch_success = True
+                    break
+            except Exception as e:
+                last_error = f"{model_name}: {str(e)}"
+                print(f"Gemini Embedding API error ({model_name}): {e}")
+                continue
+
+        if not batch_success:
+            raise RuntimeError(
+                f"Failed to generate embeddings via Gemini API: {last_error}"
+            )
+
+    return np.asarray(all_embeddings, dtype=np.float32)
