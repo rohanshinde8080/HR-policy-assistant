@@ -2,216 +2,78 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Admin Dashboard for HR Policy Assistant"
-    >
-
-    <title>
-        Admin Dashboard | HR Policy Assistant
-    </title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard for HR Policy Assistant">
+    <title>Admin Dashboard | HR Policy Assistant</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-
-    <link
-        rel="stylesheet"
-        href="css/admin.css"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 
 <body class="admin-page">
 
-
     <!-- =====================================================
-         SIDEBAR
+         1. SIDEBAR
     ====================================================== -->
-
     <aside class="admin-sidebar">
 
-
         <!-- LOGO -->
-
-        <a
-            href="admin.html"
-            class="admin-logo"
-        >
-
-            <div class="logo-icon">
-                AI
-            </div>
-
-
+        <a href="admin.html" class="admin-logo">
+            <div class="logo-icon">AI</div>
             <div class="logo-text">
-
-                <strong>
-                    HR Policy
-                </strong>
-
-                <span>
-                    Assistant
-                </span>
-
+                <strong>HR Policy</strong>
+                <span>Admin Studio</span>
             </div>
-
         </a>
 
-
-
         <!-- NAVIGATION -->
-
         <nav class="admin-nav">
-
-
-            <a
-                href="admin.html"
-                class="admin-nav-link active"
-            >
-
-                <span>
-                    ⌂
-                </span>
-
-                Dashboard
-
+            <a href="admin.html" class="admin-nav-link active">
+                <span>📊</span>
+                <span>Dashboard</span>
             </a>
-
-
-
-            <a
-                href="#policy"
-                class="admin-nav-link"
-            >
-
-                <span>
-                    ◈
-                </span>
-
-                Policy Management
-
+            <a href="#policy" class="admin-nav-link">
+                <span>📄</span>
+                <span>Policy Ingestion</span>
             </a>
-
-
-
-            <a
-                href="#quickTester"
-                class="admin-nav-link"
-            >
-
-                <span>
-                    💬
-                </span>
-
-                Quick AI Tester
-
+            <a href="#quickTester" class="admin-nav-link">
+                <span>💬</span>
+                <span>Quick AI Tester</span>
             </a>
-
-
-
-            <a
-                href="#system"
-                class="admin-nav-link"
-            >
-
-                <span>
-                    ⚙
-                </span>
-
-                System Status
-
+            <a href="#adminSection" class="admin-nav-link">
+                <span>👥</span>
+                <span>Admin Team</span>
             </a>
-
         </nav>
 
-
-
         <!-- SIDEBAR BOTTOM -->
-
         <div class="admin-sidebar-bottom">
-
-
             <div class="admin-support">
-
-                <div class="support-icon">
-                    ?
-                </div>
-
-
+                <div class="support-icon">🛡️</div>
                 <div>
-
-                    <strong>
-                        Admin Panel
-                    </strong>
-
-                    <span>
-                        Manage HR policies
-                    </span>
-
+                    <strong>Super Admin</strong>
+                    <span>System Controller</span>
                 </div>
-
             </div>
 
-
-
-            <button
-                type="button"
-                id="adminLogoutBtn"
-                class="admin-logout"
-            >
-
-                <span>
-                    ↪
-                </span>
-
-                Logout
-
+            <button type="button" id="adminLogoutBtn" class="admin-logout">
+                <span>🚪</span>
+                <span>Sign Out</span>
             </button>
-
         </div>
 
     </aside>
 
-
-
     <!-- =====================================================
-         MAIN CONTENT
+         2. MAIN CONTENT
     ====================================================== -->
-
     <main class="admin-main">
 
-
-        <!-- =================================================
-             TOPBAR
-        ================================================== -->
-
+        <!-- TOPBAR -->
         <header class="admin-topbar">
-
-            <!-- LEFT: BRAND / PORTAL BADGE -->
             <div class="topbar-left">
                 <div class="portal-tag-pill">
                     <span class="portal-dot"></span>
@@ -220,7 +82,6 @@
                 <span class="portal-sub-text">Control Center</span>
             </div>
 
-            <!-- CENTER: GOOD AFTERNOON GREETING & ADMIN TITLE -->
             <div class="topbar-center">
                 <div class="greeting-badge">
                     <span class="greeting-dot">✨</span>
@@ -228,38 +89,20 @@
                     <span class="date-sep">•</span>
                     <span id="liveDate">Today</span>
                 </div>
-
-                <h1 id="heroAdminTitle">
-                    Good afternoon, Sai!
-                </h1>
-
-                <p class="admin-topbar-sub">
-                    Live document vectorization and AI policy assistant management.
-                </p>
+                <h1 id="heroAdminTitle">Good afternoon, Admin!</h1>
+                <p class="admin-topbar-sub">Live document vectorization and AI policy assistant management.</p>
             </div>
 
-            <!-- RIGHT: LOGGED-IN ADMIN PROFILE -->
             <div class="admin-user">
-                <div class="admin-avatar" id="adminAvatar">
-                    A
-                </div>
+                <div class="admin-avatar" id="adminAvatar">A</div>
                 <div>
-                    <strong id="adminName">
-                        Admin
-                    </strong>
-                    <span id="adminRole">
-                        Administrator
-                    </span>
+                    <strong id="adminName">Admin</strong>
+                    <span id="adminRole">Administrator</span>
                 </div>
             </div>
-
         </header>
 
-
-
-        <!-- =================================================
-             LIVE METRICS STRIP (4 INTERACTIVE STATS)
-        ================================================== -->
+        <!-- LIVE METRICS STRIP (4 STATS CARDS) -->
         <section class="admin-metrics-strip">
             <div class="metric-card">
                 <div class="metric-icon blue">📄</div>
@@ -283,7 +126,7 @@
                 <div class="metric-icon indigo">🤖</div>
                 <div class="metric-content">
                     <span class="metric-label">AI REASONING</span>
-                    <strong class="metric-value">Gemini 3.6</strong>
+                    <strong class="metric-value">Gemini 3.1 Pro</strong>
                     <span class="metric-sub">Grounded Policy Answers</span>
                 </div>
             </div>
@@ -298,12 +141,10 @@
             </div>
         </section>
 
-        <!-- =================================================
-             2-COLUMN MAIN WORKSPACE (UPLOAD + TESTER)
-        ================================================== -->
+        <!-- 2-COLUMN MAIN WORKSPACE -->
         <div class="admin-workspace-grid">
 
-            <!-- LEFT COLUMN: POLICY MANAGEMENT -->
+            <!-- LEFT COLUMN: POLICY MANAGEMENT & ADMIN CREATION -->
             <div class="workspace-col" id="policy">
 
                 <!-- ACTIVE POLICY MINI CARD -->
@@ -322,17 +163,12 @@
                             </div>
                         </div>
                     </div>
-                    <a
-                        id="viewPolicyBtn"
-                        href="#"
-                        target="_blank"
-                        class="view-pdf-mini-btn"
-                    >
+                    <a id="viewPolicyBtn" href="#" target="_blank" class="view-pdf-mini-btn">
                         👁️ View PDF
                     </a>
                 </div>
 
-                <!-- UPLOAD CARD -->
+                <!-- UPLOAD KNOWLEDGE BASE CARD -->
                 <div class="upload-mini-card">
                     <div class="card-header-mini">
                         <h4>Update Knowledge Base</h4>
@@ -344,12 +180,7 @@
                         <div class="drop-icon-mini">☁️</div>
                         <p class="drop-text-mini">Drag & drop PDF here, or <span class="browse-link">browse files</span></p>
                         <span class="drop-sub-mini">PDF is automatically chunked & vectorized into FAISS</span>
-                        <input
-                            type="file"
-                            id="policyFile"
-                            accept=".pdf,application/pdf"
-                            hidden
-                        >
+                        <input type="file" id="policyFile" accept=".pdf,application/pdf" hidden>
                     </div>
 
                     <!-- SELECTED FILE -->
@@ -358,21 +189,15 @@
                     </div>
 
                     <!-- UPLOAD BUTTON -->
-                    <button
-                        type="button"
-                        id="uploadPolicyBtn"
-                        class="upload-mini-btn"
-                    >
-                        Upload & Re-Index Knowledge Base <span>→</span>
+                    <button type="button" id="uploadPolicyBtn" class="upload-mini-btn">
+                        Upload & Re-Index Knowledge Base <span>➔</span>
                     </button>
 
                     <div id="uploadMessage" class="upload-message-mini"></div>
                 </div>
 
-                <!-- =============================================
-                     ADD NEW ADMIN CARD (SECURE ADMIN MANAGEMENT)
-                ============================================== -->
-                <div class="upload-mini-card" style="margin-top: 1.25rem;">
+                <!-- ADD NEW ADMIN CARD -->
+                <div class="upload-mini-card" id="adminSection">
                     <div class="card-header-mini">
                         <h4>👥 Add New Admin</h4>
                         <span class="card-hint">Create authorized administrator accounts</span>
@@ -385,7 +210,6 @@
                             placeholder="Full Name (e.g. Rohan Shinde)"
                             required
                             class="tester-input-mini"
-                            style="width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 14px; font-size: 0.875rem;"
                         >
                         <input
                             type="email"
@@ -393,7 +217,6 @@
                             placeholder="Admin Email (e.g. rohan@company.com)"
                             required
                             class="tester-input-mini"
-                            style="width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 14px; font-size: 0.875rem;"
                         >
                         <input
                             type="password"
@@ -401,13 +224,11 @@
                             placeholder="Password (minimum 6 characters)"
                             required
                             class="tester-input-mini"
-                            style="width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 14px; font-size: 0.875rem;"
                         >
                         <button
                             type="submit"
                             id="createAdminSubmitBtn"
                             class="upload-mini-btn"
-                            style="margin-top: 4px; background: linear-gradient(135deg, #4f46e5, #4338ca);"
                         >
                             Create Admin Account <span>+</span>
                         </button>
@@ -417,10 +238,10 @@
 
             </div>
 
-            <!-- RIGHT COLUMN: QUICK AI TESTER / CHAT SIMULATOR -->
+            <!-- RIGHT COLUMN: QUICK AI TESTER -->
             <div class="workspace-col" id="quickTester">
 
-                <div class="tester-mini-card chat-simulator-card">
+                <div class="tester-mini-card">
                     <div class="card-header-mini">
                         <div class="card-title-group">
                             <span class="chat-header-icon">💬</span>
@@ -436,7 +257,6 @@
 
                     <!-- CHAT CONVERSATION STREAM -->
                     <div class="chat-stream-box" id="chatStream">
-                        <!-- INITIAL BOT GREETING -->
                         <div class="chat-msg bot-msg">
                             <div class="msg-avatar bot-avatar">🤖</div>
                             <div class="msg-body">
@@ -474,15 +294,9 @@
 
     </main>
 
-
-
-    <!-- =====================================================
-         ADMIN JAVASCRIPT
-    ====================================================== -->
-
+    <!-- JAVASCRIPT -->
     <script src="js/config.js"></script>
     <script src="js/admin.js"></script>
-
 
 </body>
 
