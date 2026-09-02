@@ -138,15 +138,27 @@ ANSWER:
         except Exception as e:
             raise RuntimeError(f"Failed to initialize Gemini client: {e}")
 
-    # Prioritized modern Gemini models
+    # Prioritized modern Gemini models with dynamic discovery
     models_to_try = [
+        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
+        "gemini-3.5-flash",
+        "gemini-3.5-flash-lite",
+        "gemini-3.6-flash",
+        "gemini-3.7-flash",
         "gemini-2.5-flash",
         "gemini-2.0-flash",
-        "gemini-1.5-flash",
-        "gemini-2.5-flash-lite",
-        "gemini-1.5-pro",
-        "gemini-2.5-pro"
+        "gemini-1.5-flash"
     ]
+
+    try:
+        models_iter = CACHED_WORKING_CLIENT.models.list()
+        for m in models_iter:
+            name = getattr(m, "name", str(m)).replace("models/", "")
+            if "gemini" in name.lower() and name not in models_to_try:
+                models_to_try.insert(0, name)
+    except Exception:
+        pass
 
     last_error = None
     for model_name in models_to_try:
