@@ -2,187 +2,132 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Login to AI-Powered HR Policy Assistant"
-    >
-
-    <title>
-        Login | HR Policy Assistant
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to AI-Powered HR Policy Assistant">
+    <title>Login | HR Policy Assistant</title>
+    <link rel="stylesheet" href="css/auth.css">
 </head>
-
 
 <body>
 
+    <div class="auth-wrapper">
 
-    <!-- ================= HEADER ================= -->
+        <!-- ANIMATED BACKGROUND GLOW BLOBS -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
 
-    <header class="navbar">
-
-        <a
-            href="index.html"
-            class="logo"
-        >
-
-            <span class="logo-icon">
-                AI
-            </span>
-
-            <span>
-                HR Policy Assistant
-            </span>
-
+        <!-- TOP BRAND LOGO -->
+        <a href="index.html" class="auth-nav-logo">
+            <div class="logo-icon">AI</div>
+            <div>
+                <span class="logo-title">HR Policy Assistant</span>
+                <span class="logo-sub">Enterprise AI Portal</span>
+            </div>
         </a>
 
-    </header>
+        <!-- LOGIN CARD -->
+        <div class="auth-card-container">
+            <div class="auth-card">
 
+                <!-- BADGE -->
+                <div class="auth-pill-badge">
+                    <span class="sparkle">✨</span> Welcome Back
+                </div>
 
+                <!-- HEADER -->
+                <div class="auth-header">
+                    <h1>Sign in to your account</h1>
+                    <p>Enter your credentials to access the AI HR Assistant</p>
+                </div>
 
-    <!-- ================= LOGIN SECTION ================= -->
+                <!-- LOGIN FORM -->
+                <form id="loginForm" class="auth-form">
 
-    <main class="auth-section">
+                    <!-- EMAIL INPUT -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉️</span>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="auth-input"
+                                placeholder="name@company.com"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+                    </div>
 
-        <div class="auth-card">
+                    <!-- PASSWORD INPUT -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="auth-input"
+                                placeholder="••••••••"
+                                autocomplete="current-password"
+                                required
+                            >
+                            <button
+                                type="button"
+                                class="password-toggle-btn"
+                                id="togglePasswordBtn"
+                                title="Toggle Password Visibility"
+                            >
+                                👁️
+                            </button>
+                        </div>
+                    </div>
 
+                    <!-- LOGIN SUBMIT BUTTON -->
+                    <button
+                        type="submit"
+                        id="loginButton"
+                        class="auth-submit-btn"
+                    >
+                        <span>Sign In</span>
+                        <span class="arrow-icon">→</span>
+                    </button>
 
-            <!-- ================= AI ICON ================= -->
+                </form>
 
-            <div class="auth-icon">
-                AI
+                <!-- STATUS MESSAGE -->
+                <div id="loginMessage" class="auth-message"></div>
+
+                <!-- REGISTER FOOTER LINK -->
+                <p class="auth-footer">
+                    Don't have an account?
+                    <a href="register.html">Create Account</a>
+                </p>
+
             </div>
-
-
-
-            <!-- ================= HEADING ================= -->
-
-            <h1>
-                Welcome back
-            </h1>
-
-
-            <p class="auth-subtitle">
-                Login to access your HR Policy Assistant
-            </p>
-
-
-
-            <!-- ================= LOGIN FORM ================= -->
-
-            <form id="loginForm">
-
-
-                <!-- ================= EMAIL ================= -->
-
-                <div class="form-group">
-
-                    <label for="email">
-                        Email Address
-                    </label>
-
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        autocomplete="email"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- ================= PASSWORD ================= -->
-
-                <div class="form-group">
-
-                    <label for="password">
-                        Password
-                    </label>
-
-
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- ================= LOGIN BUTTON ================= -->
-
-                <button
-                    type="submit"
-                    id="loginButton"
-                    class="primary-btn login-btn"
-                >
-
-                    Login
-
-                    <span>
-                        →
-                    </span>
-
-                </button>
-
-
-            </form>
-
-
-
-            <!-- ================= LOGIN MESSAGE ================= -->
-
-            <div
-                id="loginMessage"
-                class="auth-message"
-            ></div>
-
-
-
-            <!-- ================= REGISTER LINK ================= -->
-
-            <p class="auth-footer">
-
-                Don't have an account?
-
-                <a href="register.html">
-                    Create Account
-                </a>
-
-            </p>
-
-
         </div>
 
-    </main>
+    </div>
 
-
-
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- JAVASCRIPT -->
     <script src="js/config.js"></script>
     <script src="js/login.js"></script>
-
+    <script>
+        // Password Visibility Toggle
+        const toggleBtn = document.getElementById("togglePasswordBtn");
+        const passwordInput = document.getElementById("password");
+        if (toggleBtn && passwordInput) {
+            toggleBtn.addEventListener("click", function() {
+                const isPassword = passwordInput.getAttribute("type") === "password";
+                passwordInput.setAttribute("type", isPassword ? "text" : "password");
+                toggleBtn.textContent = isPassword ? "🙈" : "👁️";
+            });
+        }
+    </script>
 
 </body>
 

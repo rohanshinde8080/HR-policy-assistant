@@ -1,0 +1,487 @@
+/* =========================================================
+   HR POLICY ASSISTANT - ULTRA MODERN AUTHENTICATION THEME
+   Zero Scroll, Glassmorphism, Floating Glow & Micro-Animations
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* =========================================================
+   1. GLOBAL RESET
+   ========================================================= */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-light: #eef2ff;
+    --primary-glow: rgba(79, 70, 229, 0.35);
+    --secondary: #06b6d4;
+    --accent: #8b5cf6;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --border-card: rgba(255, 255, 255, 0.85);
+    --border-input: #e2e8f0;
+    --border-input-focus: #6366f1;
+    --shadow-card: 0 25px 60px -15px rgba(79, 70, 229, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.7);
+    --radius-card: 24px;
+    --radius-input: 12px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-main);
+    background-color: #0f172a;
+    overflow: hidden; /* Zero scroll */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   2. DYNAMIC ANIMATED BACKGROUND
+   ========================================================= */
+
+.auth-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+                linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
+    overflow: hidden;
+    padding: 16px;
+}
+
+/* Background Grid Overlay */
+.auth-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* Floating Glow Blobs */
+.bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -5%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.45) 0%, rgba(139, 92, 246, 0.15) 70%, transparent 100%);
+    animation: floatOrb1 14s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(59, 130, 246, 0.15) 70%, transparent 100%);
+    animation: floatOrb2 16s ease-in-out infinite alternate;
+}
+
+.blob-3 {
+    top: 40%;
+    left: 60%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, rgba(168, 85, 247, 0.08) 70%, transparent 100%);
+    animation: floatOrb3 18s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb1 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(60px, 40px) scale(1.1); }
+    100% { transform: translate(-30px, 70px) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-70px, -50px) scale(1.12); }
+    100% { transform: translate(40px, -30px) scale(0.92); }
+}
+
+@keyframes floatOrb3 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-50px, 40px) scale(1.15); }
+    100% { transform: translate(30px, -40px) scale(0.9); }
+}
+
+/* =========================================================
+   3. TOP NAVIGATION / BRAND BADGE
+   ========================================================= */
+
+.auth-nav-logo {
+    position: absolute;
+    top: 24px;
+    left: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    z-index: 10;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.auth-nav-logo:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.auth-nav-logo .logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+}
+
+.auth-nav-logo .logo-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+}
+
+.auth-nav-logo .logo-sub {
+    font-size: 12px;
+    color: #94a3b8;
+    display: block;
+    font-weight: 500;
+}
+
+/* =========================================================
+   4. GLASSMORPHIC AUTH CARD
+   ========================================================= */
+
+.auth-card-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 440px;
+    margin: auto;
+}
+
+.auth-card {
+    position: relative;
+    background: var(--bg-card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-card);
+    padding: 30px 34px;
+    box-shadow: var(--shadow-card);
+    animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.register-card-custom {
+    padding: 24px 32px;
+    max-width: 460px;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Card Badge Pill */
+.auth-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+}
+
+.auth-pill-badge .sparkle {
+    font-size: 12px;
+}
+
+/* Header Text */
+.auth-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.auth-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    margin-bottom: 4px;
+}
+
+.auth-header p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* =========================================================
+   5. ERGONOMIC COMPACT FORM
+   ========================================================= */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.register-card-custom .auth-form {
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+}
+
+.form-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 13px;
+    font-size: 15px;
+    color: var(--text-light);
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.auth-input {
+    width: 100%;
+    height: 42px;
+    padding: 0 14px 0 40px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--text-main);
+    background: #ffffff;
+    border: 1.5px solid var(--border-input);
+    border-radius: var(--radius-input);
+    outline: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-input:hover {
+    border-color: #cbd5e1;
+    background: #fdfdfd;
+}
+
+.auth-input:focus {
+    border-color: var(--border-input-focus);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.auth-input:focus + .input-icon,
+.input-wrapper:focus-within .input-icon {
+    color: var(--primary);
+}
+
+.auth-input::placeholder {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* Password Toggle Eye Icon */
+.password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: #94a3b8;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+    color: var(--text-main);
+}
+
+/* =========================================================
+   6. PRIMARY ACTION BUTTON WITH GLOW
+   ========================================================= */
+
+.auth-submit-btn {
+    position: relative;
+    width: 100%;
+    height: 44px;
+    margin-top: 6px;
+    border: none;
+    border-radius: var(--radius-input);
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4338ca 100%);
+    background-size: 200% auto;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.45);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.auth-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: 0.5s;
+}
+
+.auth-submit-btn:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -5px rgba(79, 70, 229, 0.55);
+}
+
+.auth-submit-btn:hover::before {
+    left: 100%;
+}
+
+.auth-submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 15px -3px rgba(79, 70, 229, 0.4);
+}
+
+.auth-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.auth-submit-btn .arrow-icon {
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+.auth-submit-btn:hover .arrow-icon {
+    transform: translateX(4px);
+}
+
+/* =========================================================
+   7. MESSAGES & FOOTER
+   ========================================================= */
+
+.auth-message, .register-message {
+    min-height: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 4px;
+    transition: all 0.2s ease;
+}
+
+.auth-footer, .login-link {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.auth-footer a, .login-link a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: color 0.2s ease;
+}
+
+.auth-footer a:hover, .login-link a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* =========================================================
+   8. RESPONSIVENESS (MOBILE)
+   ========================================================= */
+
+@media (max-width: 640px) {
+    .auth-nav-logo {
+        top: 16px;
+        left: 20px;
+    }
+
+    .auth-card {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+
+    .register-card-custom {
+        padding: 20px 18px;
+    }
+
+    .auth-header h1 {
+        font-size: 21px;
+    }
+}
+
