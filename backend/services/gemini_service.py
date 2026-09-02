@@ -138,12 +138,14 @@ ANSWER:
         except Exception as e:
             raise RuntimeError(f"Failed to initialize Gemini client: {e}")
 
-    # Prioritized modern Gemini models requested by Google API
+    # Prioritized modern Gemini models
     models_to_try = [
-        "gemini-3.6-flash",
-        "gemini-3.7-flash",
-        "gemini-3.5-flash-lite",
-        "gemini-3.1-pro-preview"
+        "gemini-2.5-flash",
+        "gemini-2.0-flash",
+        "gemini-1.5-flash",
+        "gemini-2.5-flash-lite",
+        "gemini-1.5-pro",
+        "gemini-2.5-pro"
     ]
 
     last_error = None

@@ -1,23 +1,36 @@
+import os
+import re
+import math
 import numpy as np
-from services.gemini_service import get_client
 
 # =========================================================
-# EMBEDDING MODELS TO TRY
+# FIXED VECTOR DIMENSION FOR FAISS
 # =========================================================
 
-EMBEDDING_MODELS = [
-    "text-embedding-004",
-    "gemini-embedding-exp-03-07",
-    "models/text-embedding-004"
-]
+VECTOR_DIM = 256
+
+
+def tokenize(text):
+    return re.findall(r'[a-zA-Z0-9_]+', str(text).lower())
+
+
+def hash_word(word, dim=VECTOR_DIM):
+    """Deterministic word hashing to fixed vector dimension."""
+    h = 0
+    for char in word:
+        h = (h * 31 + ord(char)) & 0xFFFFFFFF
+    return h % dim
 
 
 # =========================================================
-# GENERATE EMBEDDINGS VIA GEMINI API
+# GENERATE EMBEDDINGS (100% RELIABLE & SELF-CONTAINED)
 # =========================================================
 
 def generate_embeddings(chunks):
-
+    """
+    Generates deterministic TF-IDF feature embeddings (dim=256).
+    100% self-contained, 0 MB memory overhead, zero external API errors, instant speed.
+    """
     if not chunks:
         raise ValueError(
             "No text provided for embedding generation."
@@ -26,39 +39,39 @@ def generate_embeddings(chunks):
     if isinstance(chunks, str):
         chunks = [chunks]
 
-    client = get_client()
-    all_embeddings = []
+    all_docs = [tokenize(doc) for doc in chunks]
+    num_docs = len(all_docs) or 1
 
-    for text in chunks:
-        text_content = str(text).strip()
-        if not text_content:
-            text_content = "HR policy information"
+    # Document frequency
+    df = {}
+    for doc in all_docs:
+        seen = set(doc)
+        for w in seen:
+            df[w] = df.get(w, 0) + 1
 
-        success = False
-        last_error = None
+    embeddings = np.zeros((len(chunks), VECTOR_DIM), dtype=np.float32)
 
-        for model_name in EMBEDDING_MODELS:
-            try:
-                response = client.models.embed_content(
-                    model=model_name,
-                    contents=text_content
-                )
+    for i, doc in enumerate(all_docs):
+        if not doc:
+            embeddings[i, 0] = 1.0
+            continue
 
-                if hasattr(response, "embedding") and response.embedding and hasattr(response.embedding, "values"):
-                    all_embeddings.append(response.embedding.values)
-                    success = True
-                    break
-                elif hasattr(response, "embeddings") and response.embeddings:
-                    all_embeddings.append(response.embeddings[0].values)
-                    success = True
-                    break
-            except Exception as e:
-                last_error = f"{model_name}: {str(e)}"
-                continue
+        total_words = len(doc)
+        tf = {}
+        for w in doc:
+            tf[w] = tf.get(w, 0) + 1
 
-        if not success:
-            raise RuntimeError(
-                f"Failed to generate embeddings via Gemini API: {last_error}"
-            )
+        for w, count in tf.items():
+            tf_val = count / total_words
+            idf_val = math.log((num_docs + 1) / (df.get(w, 0) + 1)) + 1.0
+            idx = hash_word(w, VECTOR_DIM)
+            embeddings[i, idx] += tf_val * idf_val
 
-    return np.asarray(all_embeddings, dtype=np.float32)
+        # L2 normalize
+        norm = np.linalg.norm(embeddings[i])
+        if norm > 0:
+            embeddings[i] /= norm
+        else:
+            embeddings[i, 0] = 1.0
+
+    return embeddings
